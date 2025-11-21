@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Portal - CS360</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0283C2;
+            --secondary-color: #00BFA4;
+            --success-color: #4CAF50;
+            --warning-color: #FFC107;
+            --danger-color: #FF5252;
+            --light-bg: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--light-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0261a0 100%);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .page-header {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            background: var(--card-bg);
+            border-radius: 8px 8px 0 0;
+            padding: 1rem;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .tab-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-status {
+            font-size: 0.85rem;
+            color: var(--success-color);
+            font-weight: 500;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            position: relative;
+            height: 400px;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .data-table thead {
+            background: var(--light-bg);
+        }
+
+        .data-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table tbody tr:hover {
+            background: var(--light-bg);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-excellent {
+            background: #E8F5E9;
+            color: var(--success-color);
+        }
+
+        .badge-good {
+            background: #E0F2F1;
+            color: var(--secondary-color);
+        }
+
+        .badge-fair {
+            background: #FFF3E0;
+            color: var(--warning-color);
+        }
+
+        .badge-poor {
+            background: #FFEBEE;
+            color: var(--danger-color);
+        }
+
+        /* Alerts */
+        .alert-box {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-success {
+            background: #E8F5E9;
+            border-left-color: var(--success-color);
+            color: var(--success-color);
+        }
+
+        .alert-warning {
+            background: #FFF3E0;
+            border-left-color: var(--warning-color);
+            color: var(--warning-color);
+        }
+
+        .alert-info {
+            background: #E3F2FD;
+            border-left-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0261a0;
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #00a393;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--card-bg);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: 3rem;
+            border-radius: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .tab-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .chart-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>📊</span>
+                <span>CS360 Customer Portal</span>
+            </div>
+            <div class="nav-user">
+                <div class="user-info">
+                    <p style="margin: 0; font-size: 0.9rem;">John Doe</p>
+                    <p style="margin: 0; font-size: 0.85rem; opacity: 0.8;">Premium Customer</p>
+                </div>
+                <div class="user-avatar">👤</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Welcome, John!</h1>
+            <p>Track your service quality, usage, and billing in one place</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab(event, 'overview')">📊 Overview</button>
+            <button class="tab-btn" onclick="switchTab(event, 'sessions')">📱 My Sessions</button>
+            <button class="tab-btn" onclick="switchTab(event, 'history')">📈 Usage History</button>
+            <button class="tab-btn" onclick="switchTab(event, 'alerts')">🔔 My Alerts</button>
+            <button class="tab-btn" onclick="switchTab(event, 'billing')">💳 Billing</button>
+            <button class="tab-btn" onclick="switchTab(event, 'support')">🎫 Support Tickets</button>
+        </div>
+
+        <!-- TAB 1: Overview -->
+        <div id="overview" class="tab-content active">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Your Average QoE Score</div>
+                    <div class="metric-value">4.8</div>
+                    <div class="metric-status">✓ Excellent</div>
+                </div>
+
+                <div class="metric-card" style="border-left-color: var(--success-color);">
+                    <div class="metric-label">Active Sessions This Month</div>
+                    <div class="metric-value">234</div>
+                    <div class="metric-status">↑ 12% from last month</div>
+                </div>
+
+                <div class="metric-card" style="border-left-color: var(--secondary-color);">
+                    <div class="metric-label">Data Used This Month</div>
+                    <div class="metric-value">45.2 GB</div>
+                    <div class="metric-status">28 GB remaining</div>
+                </div>
+
+                <div class="metric-card" style="border-left-color: #9C27B0;">
+                    <div class="metric-label">Satisfaction Score</div>
+                    <div class="metric-value">9/10</div>
+                    <div class="metric-status">📈 Promoter</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Your Service Quality (Last 7 Days)</h3>
+                <canvas id="qoeChart"></canvas>
+            </div>
+
+            <div class="card">
+                <h2>Account Information</h2>
+                <table class="data-table">
+                    <tr>
+                        <td style="font-weight: 600; color: var(--primary-color); width: 30%;">Account Type:</td>
+                        <td><span class="badge badge-excellent">Premium</span></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600; color: var(--primary-color);">Customer ID:</td>
+                        <td>#CUST001</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600; color: var(--primary-color);">Phone:</td>
+                        <td>+27821234567</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600; color: var(--primary-color);">Email:</td>
+                        <td>john.doe@email.com</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600; color: var(--primary-color);">Member Since:</td>
+                        <td>January 15, 2024</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600; color: var(--primary-color);">Status:</td>
+                        <td><span class="badge badge-excellent">Active</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 2: My Sessions -->
+        <div id="sessions" class="tab-content">
+            <div class="card">
+                <h2>Active and Recent Sessions</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date/Time</th>
+                            <th>Device</th>
+                            <th>Duration</th>
+                            <th>Data Used</th>
+                            <th>QoE Score</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Today, 09:15 AM</td>
+                            <td>📱 iPhone 14</td>
+                            <td>42 mins</td>
+                            <td>2.3 GB</td>
+                            <td><span class="badge badge-excellent">4.8</span></td>
+                            <td><span class="badge badge-good">Excellent</span></td>
+                        </tr>
+                        <tr>
+                            <td>Yesterday, 02:30 PM</td>
+                            <td>🖥️ MacBook Pro</td>
+                            <td>1 hr 23 mins</td>
+                            <td>5.1 GB</td>
+                            <td><span class="badge badge-excellent">4.9</span></td>
+                            <td><span class="badge badge-good">Excellent</span></td>
+                        </tr>
+                        <tr>
+                            <td>Nov 19, 06:45 PM</td>
+                            <td>📱 iPhone 14</td>
+                            <td>28 mins</td>
+                            <td>1.8 GB</td>
+                            <td><span class="badge badge-good">4.3</span></td>
+                            <td><span class="badge badge-good">Good</span></td>
+                        </tr>
+                        <tr>
+                            <td>Nov 18, 11:20 AM</td>
+                            <td>📱 Samsung Galaxy</td>
+                            <td>55 mins</td>
+                            <td>3.4 GB</td>
+                            <td><span class="badge badge-excellent">4.7</span></td>
+                            <td><span class="badge badge-good">Excellent</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 3: Usage History -->
+        <div id="history" class="tab-content">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Total Data Used (30 Days)</div>
+                    <div class="metric-value">45.2 GB</div>
+                    <div class="metric-status">Out of 100 GB</div>
+                </div>
+
+                <div class="metric-card" style="border-left-color: var(--success-color);">
+                    <div class="metric-label">Average Latency</div>
+                    <div class="metric-value">52 ms</div>
+                    <div class="metric-status">Excellent</div>
+                </div>
+
+                <div class="metric-card" style="border-left-color: var(--secondary-color);">
+                    <div class="metric-label">Total Download</div>
+                    <div class="metric-value">38.6 GB</div>
+                    <div class="metric-status">85% of total</div>
+                </div>
+
+                <div class="metric-card" style="border-left-color: #FF9800;">
+                    <div class="metric-label">Total Upload</div>
+                    <div class="metric-value">6.6 GB</div>
+                    <div class="metric-status">15% of total</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Data Usage Trend (Last 30 Days)</h3>
+                <canvas id="usageChart"></canvas>
+            </div>
+        </div>
+
+        <!-- TAB 4: My Alerts -->
+        <div id="alerts" class="tab-content">
+            <div class="card">
+                <h2>Personal Alerts & Notifications</h2>
+
+                <div class="alert-box alert-info">
+                    <strong>ℹ️ Info:</strong> Your account is running well. No action needed.
+                </div>
+
+                <div class="alert-box alert-success">
+                    <strong>✓ Success:</strong> Data speed increased by 15% in your region this week!
+                </div>
+
+                <div class="alert-box alert-warning">
+                    <strong>⚠️ Warning:</strong> You're approaching 50% of your monthly data limit. 45.2 GB used.
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-top: 2rem; margin-bottom: 1rem;">Alert Settings</h3>
+                <table class="data-table">
+                    <tr>
+                        <td style="font-weight: 600;">Data Usage Alerts</td>
+                        <td><input type="checkbox" checked> Enabled</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Service Issue Alerts</td>
+                        <td><input type="checkbox" checked> Enabled</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Billing Alerts</td>
+                        <td><input type="checkbox" checked> Enabled</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Weekly Performance Reports</td>
+                        <td><input type="checkbox" checked> Enabled</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 5: Billing -->
+        <div id="billing" class="tab-content">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Current Bill</div>
+                    <div class="metric-value">R 599</div>
+                    <div class="metric-status">Due: Dec 5, 2025</div>
+                </div>
+
+                <div class="metric-card" style="border-left-color: var(--success-color);">
+                    <div class="metric-label">Last Payment</div>
+                    <div class="metric-value">R 599</div>
+                    <div class="metric-status">Nov 5, 2025 ✓</div>
+                </div>
+
+                <div class="metric-card" style="border-left-color: var(--secondary-color);">
+                    <div class="metric-label">Annual Cost</div>
+                    <div class="metric-value">R 7,188</div>
+                    <div class="metric-status">Premium Plan</div>
+                </div>
+
+                <div class="metric-card" style="border-left-color: #9C27B0;">
+                    <div class="metric-label">Next Billing Date</div>
+                    <div class="metric-value">Dec 5</div>
+                    <div class="metric-status">14 days</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Billing History</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Period</th>
+                            <th>Amount</th>
+                            <th>Plan</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nov 5, 2025</td>
+                            <td>Nov 5 - Dec 4</td>
+                            <td>R 599</td>
+                            <td>Premium 100GB</td>
+                            <td><span class="badge badge-good">Paid</span></td>
+                        </tr>
+                        <tr>
+                            <td>Oct 5, 2025</td>
+                            <td>Oct 5 - Nov 4</td>
+                            <td>R 599</td>
+                            <td>Premium 100GB</td>
+                            <td><span class="badge badge-good">Paid</span></td>
+                        </tr>
+                        <tr>
+                            <td>Sep 5, 2025</td>
+                            <td>Sep 5 - Oct 4</td>
+                            <td>R 599</td>
+                            <td>Premium 100GB</td>
+                            <td><span class="badge badge-good">Paid</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" style="margin-top: 1rem;">View Invoice</button>
+            </div>
+        </div>
+
+        <!-- TAB 6: Support Tickets -->
+        <div id="support" class="tab-content">
+            <button class="btn btn-primary" style="margin-bottom: 1rem;">+ Create New Ticket</button>
+
+            <div class="card">
+                <h2>Your Support Tickets</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Ticket ID</th>
+                            <th>Subject</th>
+                            <th>Created</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#TK009</td>
+                            <td>Account Verification Question</td>
+                            <td>Nov 15, 2025</td>
+                            <td><span class="badge badge-good">Low</span></td>
+                            <td><span class="badge badge-good">Resolved</span></td>
+                            <td><a href="#" style="color: var(--primary-color);">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>#TK008</td>
+                            <td>Billing Inquiry</td>
+                            <td>Nov 10, 2025</td>
+                            <td><span class="badge badge-good">Low</span></td>
+                            <td><span class="badge badge-excellent">Resolved</span></td>
+                            <td><a href="#" style="color: var(--primary-color);">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>#TK007</td>
+                            <td>Speed Test Results</td>
+                            <td>Nov 1, 2025</td>
+                            <td><span class="badge badge-good">Low</span></td>
+                            <td><span class="badge badge-excellent">Resolved</span></td>
+                            <td><a href="#" style="color: var(--primary-color);">View</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2025 CareStream360 (cs360) - Customer Portal. All rights reserved.</p>
+            <p>Need Help? <a href="#" style="color: var(--primary-color);">Contact Support</a> | <a href="#" style="color: var(--primary-color);">Documentation</a> | <a href="#" style="color: var(--primary-color);">Privacy Policy</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Tab Switching
+        function switchTab(e, tabName) {
+            e.preventDefault();
+            
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            e.target.classList.add('active');
+        }
+
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // QoE Chart
+            const qoeCtx = document.getElementById('qoeChart');
+            if (qoeCtx) {
+                new Chart(qoeCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'Your QoE Score',
+                            data: [4.5, 4.6, 4.8, 4.7, 4.9, 4.8, 4.8],
+                            borderColor: '#0283C2',
+                            backgroundColor: 'rgba(2, 131, 194, 0.05)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#0283C2'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                min: 0,
+                                max: 5
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Usage Chart
+            const usageCtx = document.getElementById('usageChart');
+            if (usageCtx) {
+                new Chart(usageCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        datasets: [{
+                            label: 'Data Used (GB)',
+                            data: [10.5, 11.2, 12.1, 11.4],
+                            backgroundColor: '#0283C2',
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
