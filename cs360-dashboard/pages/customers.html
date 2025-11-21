@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers - CS360</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">📊</span>
+                <span class="logo-text">CS360</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Dashboard</a></li>
+                <li><a href="sessions.html" class="nav-link">Sessions</a></li>
+                <li><a href="qoe-analytics.html" class="nav-link">QoE Analytics</a></li>
+                <li><a href="customers.html" class="nav-link active">Customers</a></li>
+                <li><a href="alerts.html" class="nav-link">Alerts</a></li>
+            </ul>
+            <div class="nav-user">
+                <span class="user-name">Admin</span>
+                <span class="user-avatar">👤</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>Customer Management</h1>
+            <p>Monitor and manage customer accounts and satisfaction</p>
+        </header>
+
+        <!-- Search and Filter -->
+        <section style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3 style="margin-bottom: 1rem; color: #0283C2;">Search Customers</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <input type="text" placeholder="Search by name or ID..." style="padding: 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 0.95rem;">
+                <select style="padding: 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+                    <option>All Account Types</option>
+                    <option>Premium</option>
+                    <option>Standard</option>
+                    <option>Basic</option>
+                </select>
+                <select style="padding: 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+                    <option>All NPS Ranges</option>
+                    <option>Promoter (9-10)</option>
+                    <option>Passive (7-8)</option>
+                    <option>Detractor (0-6)</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Customers Table -->
+        <section style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-bottom: 2rem;">
+            <h2 style="color: #0283C2; margin-bottom: 1.5rem;">Customer List</h2>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Phone</th>
+                            <th>Account Type</th>
+                            <th>Avg QoE</th>
+                            <th>Last Session</th>
+                            <th>NPS Score</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>John Doe</strong></td>
+                            <td>+27821234567</td>
+                            <td>Premium</td>
+                            <td><span style="background: #E8F5E9; color: #4CAF50; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">4.8</span></td>
+                            <td>Today, 09:15</td>
+                            <td><span style="background: #E8F5E9; color: #4CAF50; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">9</span></td>
+                            <td><span style="background: #E8F5E9; color: #4CAF50; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Promoter</span></td>
+                            <td><button style="background: #0283C2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">View</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jane Smith</strong></td>
+                            <td>+27821234568</td>
+                            <td>Standard</td>
+                            <td><span style="background: #FFF3E0; color: #FFC107; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">3.0</span></td>
+                            <td>Today, 09:22</td>
+                            <td><span style="background: #FFF3E0; color: #FFC107; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">6</span></td>
+                            <td><span style="background: #FFF3E0; color: #FFC107; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Passive</span></td>
+                            <td><button style="background: #0283C2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">View</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mike Johnson</strong></td>
+                            <td>+27821234569</td>
+                            <td>Premium</td>
+                            <td><span style="background: #FFEBEE; color: #FF5252; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">1.8</span></td>
+                            <td>Today, 09:30</td>
+                            <td><span style="background: #FFEBEE; color: #FF5252; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">3</span></td>
+                            <td><span style="background: #FFEBEE; color: #FF5252; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Detractor</span></td>
+                            <td><button style="background: #0283C2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">View</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sarah Williams</strong></td>
+                            <td>+27821234570</td>
+                            <td>Basic</td>
+                            <td><span style="background: #E8F5E9; color: #4CAF50; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">4.3</span></td>
+                            <td>2 hours ago</td>
+                            <td><span style="background: #E8F5E9; color: #4CAF50; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">8</span></td>
+                            <td><span style="background: #E8F5E9; color: #4CAF50; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Promoter</span></td>
+                            <td><button style="background: #0283C2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">View</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>David Brown</strong></td>
+                            <td>+27821234571</td>
+                            <td>Standard</td>
+                            <td><span style="background: #E8F5E9; color: #4CAF50; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">4.2</span></td>
+                            <td>Yesterday</td>
+                            <td><span style="background: #E8F5E9; color: #4CAF50; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">9</span></td>
+                            <td><span style="background: #E8F5E9; color: #4CAF50; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Promoter</span></td>
+                            <td><button style="background: #0283C2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Customer Segments -->
+        <section style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-bottom: 2rem;">
+            <h2 style="color: #0283C2; margin-bottom: 1.5rem;">Customer Segments</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div style="padding: 1.5rem; background: #E8F5E9; border-radius: 8px; border-left: 4px solid #4CAF50;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #4CAF50;">Promoters (NPS 9-10)</h4>
+                    <p style="margin: 0; font-size: 2rem; font-weight: bold; color: #4CAF50;">742</p>
+                    <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.9rem;">59% of customer base</p>
+                </div>
+                <div style="padding: 1.5rem; background: #FFF3E0; border-radius: 8px; border-left: 4px solid #FFC107;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #FFC107;">Passives (NPS 7-8)</h4>
+                    <p style="margin: 0; font-size: 2rem; font-weight: bold; color: #FFC107;">328</p>
+                    <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.9rem;">26% of customer base</p>
+                </div>
+                <div style="padding: 1.5rem; background: #FFEBEE; border-radius: 8px; border-left: 4px solid #FF5252;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #FF5252;">Detractors (NPS 0-6)</h4>
+                    <p style="margin: 0; font-size: 2rem; font-weight: bold; color: #FF5252;">182</p>
+                    <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.9rem;">15% of customer base</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 CareStream360 (cs360). All rights reserved. | Last Updated: <span id="lastUpdate"></span></p>
+        </footer>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

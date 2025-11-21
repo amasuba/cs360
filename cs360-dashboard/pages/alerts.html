@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts & Notifications - CS360</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">📊</span>
+                <span class="logo-text">CS360</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Dashboard</a></li>
+                <li><a href="sessions.html" class="nav-link">Sessions</a></li>
+                <li><a href="qoe-analytics.html" class="nav-link">QoE Analytics</a></li>
+                <li><a href="customers.html" class="nav-link">Customers</a></li>
+                <li><a href="alerts.html" class="nav-link active">Alerts</a></li>
+            </ul>
+            <div class="nav-user">
+                <span class="user-name">Admin</span>
+                <span class="user-avatar">👤</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>Alerts & Notifications</h1>
+            <p>System alerts and customer notifications management</p>
+        </header>
+
+        <!-- Alert Summary -->
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-header">
+                    <span class="metric-icon">🔴</span>
+                    <span class="metric-title">Critical Alerts</span>
+                </div>
+                <div class="metric-value">8</div>
+                <div class="metric-trend trend-down">↓ Immediate action needed</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <span class="metric-icon">🟡</span>
+                    <span class="metric-title">Warnings</span>
+                </div>
+                <div class="metric-value">24</div>
+                <div class="metric-trend trend-up">Monitor closely</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <span class="metric-icon">ℹ️</span>
+                    <span class="metric-title">Information</span>
+                </div>
+                <div class="metric-value">156</div>
+                <div class="metric-trend trend-neutral">Last 24 hours</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <span class="metric-icon">📬</span>
+                    <span class="metric-title">Notifications Sent</span>
+                </div>
+                <div class="metric-value">1,247</div>
+                <div class="metric-trend trend-up">Today's total</div>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3 style="margin-bottom: 1rem; color: #0283C2;">Filter Alerts</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <select style="padding: 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+                    <option>All Severities</option>
+                    <option>Critical</option>
+                    <option>Warning</option>
+                    <option>Info</option>
+                </select>
+                <select style="padding: 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+                    <option>All Alert Types</option>
+                    <option>Poor QoE</option>
+                    <option>Network Issues</option>
+                    <option>App Errors</option>
+                    <option>Churn Risk</option>
+                </select>
+                <select style="padding: 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+                    <option>All Status</option>
+                    <option>Active</option>
+                    <option>Acknowledged</option>
+                    <option>Resolved</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Active Alerts -->
+        <section style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-bottom: 2rem;">
+            <h2 style="color: #0283C2; margin-bottom: 1.5rem;">Active Alerts</h2>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Critical Alert 1 -->
+                <div style="border-left: 4px solid #FF5252; background: #FFEBEE; padding: 1.5rem; border-radius: 8px; display: flex; justify-content: space-between; align-items: start;">
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <span style="font-size: 1.5rem;">🔴</span>
+                            <h4 style="margin: 0; color: #FF5252;">Critical: Regional Network Outage</h4>
+                            <span style="background: #FF5252; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">CRITICAL</span>
+                        </div>
+                        <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Durban region experiencing 45% packet loss. 234 customers affected. Support tickets auto-created.</p>
+                        <p style="margin: 0; color: #999; font-size: 0.85rem;">Detected 5 mins ago | Session #S423, #S424, #S425</p>
+                    </div>
+                    <button style="background: #FF5252; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; white-space: nowrap;">Acknowledge</button>
+                </div>
+
+                <!-- Critical Alert 2 -->
+                <div style="border-left: 4px solid #FF5252; background: #FFEBEE; padding: 1.5rem; border-radius: 8px; display: flex; justify-content: space-between; align-items: start;">
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <span style="font-size: 1.5rem;">🔴</span>
+                            <h4 style="margin: 0; color: #FF5252;">Critical: API Latency Spike</h4>
+                            <span style="background: #FF5252; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">CRITICAL</span>
+                        </div>
+                        <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Backend API response time exceeds 5 seconds. 89 active sessions experiencing severe delays.</p>
+                        <p style="margin: 0; color: #999; font-size: 0.85rem;">Detected 3 mins ago | Ticket #TK001 created</p>
+                    </div>
+                    <button style="background: #FF5252; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; white-space: nowrap;">Acknowledge</button>
+                </div>
+
+                <!-- Warning Alert 1 -->
+                <div style="border-left: 4px solid #FFC107; background: #FFF3E0; padding: 1.5rem; border-radius: 8px; display: flex; justify-content: space-between; align-items: start;">
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <span style="font-size: 1.5rem;">🟡</span>
+                            <h4 style="margin: 0; color: #FFC107;">Warning: High Churn Risk Detected</h4>
+                            <span style="background: #FFC107; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">WARNING</span>
+                        </div>
+                        <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">23 customers showing churn patterns (poor QoE 3+ times). Retention team notified.</p>
+                        <p style="margin: 0; color: #999; font-size: 0.85rem;">Detected 12 mins ago | Action: Auto-generated retention campaigns</p>
+                    </div>
+                    <button style="background: #FFC107; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; white-space: nowrap;">View Details</button>
+                </div>
+
+                <!-- Info Alert -->
+                <div style="border-left: 4px solid #2196F3; background: #E3F2FD; padding: 1.5rem; border-radius: 8px; display: flex; justify-content: space-between; align-items: start;">
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <span style="font-size: 1.5rem;">ℹ️</span>
+                            <h4 style="margin: 0; color: #2196F3;">Info: Scheduled Maintenance Complete</h4>
+                            <span style="background: #2196F3; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">INFO</span>
+                        </div>
+                        <p style="margin: 0.5rem 0; color: #666; font-size: 0.9rem;">Scheduled database maintenance completed successfully. Zero downtime achieved.</p>
+                        <p style="margin: 0; color: #999; font-size: 0.85rem;">Completed 1 hour ago</p>
+                    </div>
+                    <button style="background: #2196F3; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; white-space: nowrap;">Dismiss</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alert History Table -->
+        <section style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-bottom: 2rem;">
+            <h2 style="color: #0283C2; margin-bottom: 1.5rem;">Alert History (Last 24 Hours)</h2>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Alert Type</th>
+                            <th>Severity</th>
+                            <th>Description</th>
+                            <th>Affected</th>
+                            <th>Status</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2025-11-21 09:45</td>
+                            <td>Network Issue</td>
+                            <td><span style="background: #FFEBEE; color: #FF5252; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">CRITICAL</span></td>
+                            <td>Regional packet loss - Durban</td>
+                            <td>234 customers</td>
+                            <td>Active</td>
+                            <td>5 mins</td>
+                        </tr>
+                        <tr>
+                            <td>2025-11-21 09:43</td>
+                            <td>API Latency</td>
+                            <td><span style="background: #FFEBEE; color: #FF5252; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">CRITICAL</span></td>
+                            <td>Backend response time spike</td>
+                            <td>89 sessions</td>
+                            <td>Active</td>
+                            <td>3 mins</td>
+                        </tr>
+                        <tr>
+                            <td>2025-11-21 09:33</td>
+                            <td>Churn Risk</td>
+                            <td><span style="background: #FFF3E0; color: #FFC107; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">WARNING</span></td>
+                            <td>High churn pattern detection</td>
+                            <td>23 customers</td>
+                            <td>Acknowledged</td>
+                            <td>12 mins</td>
+                        </tr>
+                        <tr>
+                            <td>2025-11-21 08:45</td>
+                            <td>Maintenance</td>
+                            <td><span style="background: #E3F2FD; color: #2196F3; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">INFO</span></td>
+                            <td>Scheduled DB maintenance</td>
+                            <td>All</td>
+                            <td>Resolved</td>
+                            <td>1 hour</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 CareStream360 (cs360). All rights reserved. | Last Updated: <span id="lastUpdate"></span></p>
+        </footer>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
