@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Sessions - CS360</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">📊</span>
+                <span class="logo-text">CS360</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Dashboard</a></li>
+                <li><a href="sessions.html" class="nav-link active">Sessions</a></li>
+                <li><a href="qoe-analytics.html" class="nav-link">QoE Analytics</a></li>
+                <li><a href="customers.html" class="nav-link">Customers</a></li>
+                <li><a href="alerts.html" class="nav-link">Alerts</a></li>
+            </ul>
+            <div class="nav-user">
+                <span class="user-name">Admin</span>
+                <span class="user-avatar">👤</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>Active Sessions Monitor</h1>
+            <p>Real-time monitoring of all customer sessions</p>
+        </header>
+
+        <!-- Filter Section -->
+        <section class="filter-section" style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <h3 style="margin-bottom: 1rem; color: #0283C2;">Filter Options</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Device Type</label>
+                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+                        <option>All Devices</option>
+                        <option>Mobile</option>
+                        <option>Desktop</option>
+                        <option>Tablet</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Location</label>
+                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+                        <option>All Locations</option>
+                        <option>Johannesburg</option>
+                        <option>Cape Town</option>
+                        <option>Durban</option>
+                        <option>Pretoria</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">QoE Status</label>
+                    <select style="width: 100%; padding: 0.5rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+                        <option>All Status</option>
+                        <option>Excellent</option>
+                        <option>Good</option>
+                        <option>Fair</option>
+                        <option>Poor</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sessions Grid -->
+        <section class="sessions-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <!-- Session Card 1 -->
+            <div class="session-card" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-left: 4px solid #4CAF50;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <h3 style="margin: 0; color: #0283C2;">Session #S001</h3>
+                    <span style="background: #E8F5E9; color: #4CAF50; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Active</span>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <p style="margin: 0.5rem 0; color: #666;">👤 <strong>John Doe</strong></p>
+                    <p style="margin: 0.5rem 0; color: #666;">📱 Mobile • Johannesburg</p>
+                    <p style="margin: 0.5rem 0; color: #666;">⏱️ Duration: 15 mins</p>
+                </div>
+                <div style="background: #f5f5f5; padding: 1rem; border-radius: 4px;">
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>QoE Score:</strong> <span style="background: #E8F5E9; color: #4CAF50; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">4.8</span></p>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>Latency:</strong> 45ms</p>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>Download Speed:</strong> 85.5 Mbps</p>
+                </div>
+            </div>
+
+            <!-- Session Card 2 -->
+            <div class="session-card" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-left: 4px solid #FFC107;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <h3 style="margin: 0; color: #0283C2;">Session #S002</h3>
+                    <span style="background: #FFF3E0; color: #FFC107; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Warning</span>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <p style="margin: 0.5rem 0; color: #666;">👤 <strong>Jane Smith</strong></p>
+                    <p style="margin: 0.5rem 0; color: #666;">🖥️ Desktop • Cape Town</p>
+                    <p style="margin: 0.5rem 0; color: #666;">⏱️ Duration: 8 mins</p>
+                </div>
+                <div style="background: #f5f5f5; padding: 1rem; border-radius: 4px;">
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>QoE Score:</strong> <span style="background: #FFF3E0; color: #FFC107; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">3.0</span></p>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>Latency:</strong> 120ms</p>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>Download Speed:</strong> 35.2 Mbps</p>
+                </div>
+            </div>
+
+            <!-- Session Card 3 -->
+            <div class="session-card" style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-left: 4px solid #FF5252;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <h3 style="margin: 0; color: #0283C2;">Session #S003</h3>
+                    <span style="background: #FFEBEE; color: #FF5252; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Critical</span>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <p style="margin: 0.5rem 0; color: #666;">👤 <strong>Mike Johnson</strong></p>
+                    <p style="margin: 0.5rem 0; color: #666;">📱 Mobile • Durban</p>
+                    <p style="margin: 0.5rem 0; color: #666;">⏱️ Duration: 5 mins</p>
+                </div>
+                <div style="background: #f5f5f5; padding: 1rem; border-radius: 4px;">
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>QoE Score:</strong> <span style="background: #FFEBEE; color: #FF5252; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">1.8</span></p>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>Latency:</strong> 250ms</p>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;"><strong>Download Speed:</strong> 20.5 Mbps</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Sessions Table -->
+        <section style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-bottom: 2rem;">
+            <h2 style="color: #0283C2; margin-bottom: 1.5rem;">All Active Sessions</h2>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Session ID</th>
+                            <th>Customer</th>
+                            <th>Device</th>
+                            <th>Location</th>
+                            <th>Start Time</th>
+                            <th>Duration</th>
+                            <th>QoE Score</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-left: 4px solid #4CAF50;">
+                            <td><strong>#S001</strong></td>
+                            <td>John Doe</td>
+                            <td>Mobile</td>
+                            <td>Johannesburg</td>
+                            <td>2025-11-21 09:15</td>
+                            <td>15 mins</td>
+                            <td><span style="background: #E8F5E9; color: #4CAF50; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">4.8</span></td>
+                            <td><button style="background: #0283C2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">View Details</button></td>
+                        </tr>
+                        <tr style="border-left: 4px solid #FFC107;">
+                            <td><strong>#S002</strong></td>
+                            <td>Jane Smith</td>
+                            <td>Desktop</td>
+                            <td>Cape Town</td>
+                            <td>2025-11-21 09:22</td>
+                            <td>8 mins</td>
+                            <td><span style="background: #FFF3E0; color: #FFC107; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">3.0</span></td>
+                            <td><button style="background: #0283C2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">View Details</button></td>
+                        </tr>
+                        <tr style="border-left: 4px solid #FF5252;">
+                            <td><strong>#S003</strong></td>
+                            <td>Mike Johnson</td>
+                            <td>Mobile</td>
+                            <td>Durban</td>
+                            <td>2025-11-21 09:30</td>
+                            <td>5 mins</td>
+                            <td><span style="background: #FFEBEE; color: #FF5252; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600;">1.8</span></td>
+                            <td><button style="background: #0283C2; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">View Details</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 CareStream360 (cs360). All rights reserved. | Last Updated: <span id="lastUpdate"></span></p>
+        </footer>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS360 - CareStream360 Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">📊</span>
+                <span class="logo-text">CS360</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Dashboard</a></li>
+                <li><a href="pages/sessions.html" class="nav-link">Sessions</a></li>
+                <li><a href="pages/qoe-analytics.html" class="nav-link">QoE Analytics</a></li>
+                <li><a href="pages/customers.html" class="nav-link">Customers</a></li>
+                <li><a href="pages/alerts.html" class="nav-link">Alerts</a></li>
+            </ul>
+            <div class="nav-user">
+                <span class="user-name">Admin</span>
+                <span class="user-avatar">👤</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>CareStream360 Executive Dashboard</h1>
+            <p>Real-time Quality of Experience (QoE) Monitoring & Analytics</p>
+        </header>
+
+        <!-- Key Metrics Section -->
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-header">
+                    <span class="metric-icon">👥</span>
+                    <span class="metric-title">Active Sessions</span>
+                </div>
+                <div class="metric-value">1,247</div>
+                <div class="metric-trend trend-up">↑ 12% from yesterday</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <span class="metric-icon">⭐</span>
+                    <span class="metric-title">Avg QoE Score</span>
+                </div>
+                <div class="metric-value">4.2</div>
+                <div class="metric-trend trend-up">↑ Excellent</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <span class="metric-icon">📉</span>
+                    <span class="metric-title">Churn Rate</span>
+                </div>
+                <div class="metric-value">2.3%</div>
+                <div class="metric-trend trend-down">↓ 8% improvement</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <span class="metric-icon">🎫</span>
+                    <span class="metric-title">Support Tickets</span>
+                </div>
+                <div class="metric-value">34</div>
+                <div class="metric-trend trend-neutral">Open tickets</div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts-section">
+            <!-- QoE Distribution Chart -->
+            <div class="chart-container">
+                <h2 class="chart-title">QoE Score Distribution</h2>
+                <canvas id="qoeChart"></canvas>
+            </div>
+
+            <!-- Session Status Chart -->
+            <div class="chart-container">
+                <h2 class="chart-title">Session Status</h2>
+                <canvas id="sessionChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Real-time Monitoring Section -->
+        <section class="monitoring-section">
+            <h2>Real-time Session Monitor</h2>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Session ID</th>
+                            <th>Customer</th>
+                            <th>Device</th>
+                            <th>Location</th>
+                            <th>Latency (ms)</th>
+                            <th>QoE Score</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="status-excellent">
+                            <td>#S001</td>
+                            <td>John Doe</td>
+                            <td>Mobile</td>
+                            <td>Johannesburg</td>
+                            <td>45</td>
+                            <td><span class="badge excellent">4.8</span></td>
+                            <td><span class="status-badge active">Active</span></td>
+                        </tr>
+                        <tr class="status-good">
+                            <td>#S002</td>
+                            <td>Jane Smith</td>
+                            <td>Desktop</td>
+                            <td>Cape Town</td>
+                            <td>65</td>
+                            <td><span class="badge good">3.9</span></td>
+                            <td><span class="status-badge active">Active</span></td>
+                        </tr>
+                        <tr class="status-fair">
+                            <td>#S003</td>
+                            <td>Mike Johnson</td>
+                            <td>Tablet</td>
+                            <td>Durban</td>
+                            <td>120</td>
+                            <td><span class="badge fair">3.0</span></td>
+                            <td><span class="status-badge alert">Warning</span></td>
+                        </tr>
+                        <tr class="status-poor">
+                            <td>#S004</td>
+                            <td>Sarah Lee</td>
+                            <td>Mobile</td>
+                            <td>Pretoria</td>
+                            <td>250</td>
+                            <td><span class="badge poor">1.8</span></td>
+                            <td><span class="status-badge critical">Critical</span></td>
+                        </tr>
+                        <tr class="status-excellent">
+                            <td>#S005</td>
+                            <td>Robert Brown</td>
+                            <td>Desktop</td>
+                            <td>Port Elizabeth</td>
+                            <td>35</td>
+                            <td><span class="badge excellent">4.6</span></td>
+                            <td><span class="status-badge active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Alerts Section -->
+        <section class="alerts-section">
+            <h2>Recent Alerts</h2>
+            <div class="alerts-container">
+                <div class="alert alert-critical">
+                    <span class="alert-icon">🔴</span>
+                    <div class="alert-content">
+                        <h4>Critical QoE Drop Detected</h4>
+                        <p>Session #S004 experiencing poor QoE (1.8). Network latency spike detected in Pretoria region.</p>
+                    </div>
+                    <span class="alert-time">2 mins ago</span>
+                </div>
+
+                <div class="alert alert-warning">
+                    <span class="alert-icon">🟡</span>
+                    <div class="alert-content">
+                        <h4>Fair QoE Alert</h4>
+                        <p>Session #S003 QoE score dropped to 3.0. Ticket #TK012 created for support team.</p>
+                    </div>
+                    <span class="alert-time">5 mins ago</span>
+                </div>
+
+                <div class="alert alert-success">
+                    <span class="alert-icon">🟢</span>
+                    <div class="alert-content">
+                        <h4>Issue Resolved</h4>
+                        <p>Session #S002 issue resolved. Customer notified. NPS feedback: Positive.</p>
+                    </div>
+                    <span class="alert-time">12 mins ago</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 CareStream360 (cs360). All rights reserved. | Last Updated: <span id="lastUpdate"></span></p>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+</html>
