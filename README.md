@@ -163,8 +163,8 @@ cs360-dashboard/
 
 1. **Download/Clone Files**
    ```bash
-   git clone <your-repo-url>
-   cd cs360-dashboard
+   git clone <https://github.com/amasuba/cs360/>
+   cd cs360
    ```
 
 2. **Open in Browser**
@@ -414,7 +414,7 @@ CMD ["nginx", "-g", "daemon off;"]
 ## 📄 License
 
 CareStream360 (cs360) Dashboard - Demo Project  
-© 2025 CareStream360 Innovation Lab  
+© 2025 Aaron Masuba  
 All rights reserved.
 
 ---
@@ -423,15 +423,15 @@ All rights reserved.
 
 Built for: **Telkom South Africa**  
 Challenge: **Enhancing Customer Experience in Telecommunications**  
-Team: **CareStream360 Innovation Lab**
+Team: **Aaron Masuba**
 
 ---
 
 ## 📞 Contact
 
 For questions, support, or feature requests:
-- Email: team@carestream360.dev
-- GitHub: https://github.com/carestream360/cs360-dashboard
+- Email: aaron.masuba@tuks.co.za
+- GitHub: https://github.com/amasuba/cs360
 
 ---
 
